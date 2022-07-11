@@ -1,0 +1,9 @@
+# idea ignore
+.idea/
+.deploy
+*.ipr
+*.iml
+*.iws
+target/
+
+*.class
