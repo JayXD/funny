@@ -4,6 +4,7 @@ import com.dxj.ffx.tree.entity.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class PreorderTraversal {
 
@@ -29,11 +30,25 @@ public class PreorderTraversal {
         traversal(treeNode.right, res);
     }
 
+
     /**
      * 迭代
      */
-    public void preorderTraversalIteration(){
-
+    public List<Integer> preorderTraversalIteration(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            root = root.right;
+        }
+        return res;
     }
 
 }
