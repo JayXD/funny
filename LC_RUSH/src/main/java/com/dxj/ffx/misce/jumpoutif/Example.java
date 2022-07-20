@@ -1,4 +1,4 @@
-package com.dxj.ffx.jumpoutif;
+package com.dxj.ffx.misce.jumpoutif;
 
 public class Example {
 

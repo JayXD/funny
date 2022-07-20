@@ -1,4 +1,4 @@
-package com.dxj.ffx.util;
+package com.dxj.ffx.misce.util;
 
 import java.util.function.Function;
 

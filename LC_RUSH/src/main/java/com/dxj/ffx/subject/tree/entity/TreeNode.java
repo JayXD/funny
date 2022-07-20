@@ -1,4 +1,4 @@
-package com.dxj.ffx.tree.entity;
+package com.dxj.ffx.subject.tree.entity;
 
 public class TreeNode {
     public Integer val;
@@ -13,5 +13,12 @@ public class TreeNode {
         this.val = val;
         this.left = left;
         this.right = right;
+    }
+
+    @Override
+    public String toString() {
+        return "TreeNode{" +
+                "val=" + val +
+                '}';
     }
 }
