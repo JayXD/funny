@@ -10,6 +10,9 @@ public abstract class SaiyaJin {
 
     private SecondName secondName;
 
+    /**
+     * 初始化时绑定，或动态设定行为
+     */
     private TurnedBehavior turnedBehavior;
 
     public SaiyaJin(SecondName secondName, TurnedBehavior turnedBehavior) {
