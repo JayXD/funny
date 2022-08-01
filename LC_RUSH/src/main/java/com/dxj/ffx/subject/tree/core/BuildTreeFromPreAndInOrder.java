@@ -3,19 +3,47 @@ package com.dxj.ffx.subject.tree.core;
 import com.dxj.ffx.subject.tree.entity.TreeNode;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 105. 从前序与中序遍历序列构造二叉树
  */
-public class BuildTree {
+public class BuildTreeFromPreAndInOrder {
 
     public static void main(String[] args) {
         int[] left = new int[]{3, 9, 20, 15, 7};
         int[] right = new int[]{9, 3, 15, 20, 7};
-        TreeNode treeNode = new BuildTree().buildTreeRubbish(left, right);
+        TreeNode treeNode = new BuildTreeFromPreAndInOrder().buildTree(left, right);
         System.out.println(treeNode);
     }
 
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+
+        Map<Integer, Integer> indexMap = new HashMap<>();
+        for (int i = 0; i < inorder.length; i++) {
+            indexMap.put(inorder[i], i);
+        }
+        return buildTree(preorder, inorder, indexMap, 0, preorder.length - 1, 0, inorder.length - 1);
+    }
+
+    private TreeNode buildTree(int[] preorder, int[] inorder, Map<Integer, Integer> indexMap, int preLeft, int preRight, int inLeft, int inRight) {
+        if (preLeft > preRight) {
+            return null;
+        }
+
+        int rootVal = preorder[preLeft];
+        int rootIndex = indexMap.get(rootVal);
+
+        TreeNode left = buildTree(preorder, inorder, indexMap, preLeft + 1, preLeft + rootIndex - inLeft, inLeft, rootIndex - 1);
+        TreeNode right = buildTree(preorder, inorder, indexMap, preLeft + rootIndex - inLeft + 1, preRight, rootIndex + 1, inRight);
+
+        TreeNode root = new TreeNode(rootVal);
+        root.left = left;
+        root.right = right;
+        return root;
+    }
 
     /**
      * 没必要拷贝，新建一个带边界的递归方法。
